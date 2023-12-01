@@ -4,23 +4,24 @@ using System.Text.RegularExpressions;
 
 class Program{
         static void Main(string[] args ){
-
+      // Infinite loop to keep the program running
             while(true){
-//Ask user for the CSV file name and get the current directory
+//Ask user for the CSV file name found in Data Folder
   Console.WriteLine("Enter the CSV file name (or type 'exit' to quit):");
             string fileName = Console.ReadLine();
         
  // Check if the user wants to exit the program
             if (fileName.Equals("exit", StringComparison.OrdinalIgnoreCase))
             {
-                break; // Exit the loop, thus ending the program
+                break; 
             }
+            //Recieve
+            string projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".."));
+            string filePath = Path.Combine(projectDirectory, "Data", $"{fileName}.csv");
 
-        string filePath = Path.Combine(Environment.CurrentDirectory, $"{fileName}.csv");
 
-
- // Check if file exists
-        if (!File.Exists(filePath))
+            // Check if file exists
+            if (!File.Exists(filePath))
         {
             Console.WriteLine("Error: File does not exist.");
              continue;
